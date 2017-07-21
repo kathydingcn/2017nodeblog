@@ -1,0 +1,5 @@
+1.mkdir 2017nodeblog
+2.npm init -y
+3. npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongoose connect-flash multer async -S
+4.edit .gitignore file( node_modules, .idea)
+5.git init, git add -A, git commit -m "1"
