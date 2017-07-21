@@ -1,7 +1,7 @@
 =====setup env=========
 1.mkdir 2017nodeblog
 2.npm init -y
-3. npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongoose connect-flash multer async -S
+3. npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongoose connect-flash multer async bootstrap -S
 4.edit .gitignore file( node_modules, .idea)
 5.git init, git add -A, git commit -m "1"
 6. create repository in github , name is 2017nodeblog (https://github.com/kathydingcn/2017nodeblog.git)
@@ -34,4 +34,43 @@ router.get("/signup", function(req,res){
     res.send("user signup page");
 });
 
+=======Use ejs and bootstrap to render views/index.html============
+use ejs:
+in server.js:
+let path=require("path");
+app.set("view engine", "html");
+//specify the root directory that model files will put
+app.set("views",path.resolve("views")); //views directory already created before this.
+// use ejs engine to render html files
+app.engine("html",require("ejs").__express);
 
+use bootstrap(bootstrap.css is located under 2017nodeblog/node_modules/bootstrap/dist/css/bootstrap.css):
+in server.js , use static file middleware, this middleware will get all the request related with the static files.
+app.use(express.static(path.resolve("node_modules")));
+in views/index.html:
+<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+// bootstrap.js depends on jquery, so jquery is also needed.
+<script type="text/javascript" src="/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.js"></script>
+
+to test:
+in index.js:
+router.get("/",function(req,res){
+    //relative path, to the views directory
+    res.render("index.html", {title:"DingDingMao Blog"});
+});
+
+==========index.html, header.html, footer.html, user.html==========
+in views/index.html
+<%- include include/header.html%>
+Home Page
+<%- include include/footer.html%>
+
+in header.html:
+<ul class="nav navbar-nav">
+                <li><a href="/">Home Page</a></li>
+                <li><a href="/user/signup">Sign Up</a></li>
+                <li><a href="/user/signin">Sign In</a></li>
+                <li><a href="/user/signout">Sign Out</a></li>
+                <li><a href="/article/add">Add articles</a></li>
+                </ul>
