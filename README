@@ -1,5 +1,37 @@
+=====setup env=========
 1.mkdir 2017nodeblog
 2.npm init -y
 3. npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongoose connect-flash multer async -S
 4.edit .gitignore file( node_modules, .idea)
 5.git init, git add -A, git commit -m "1"
+6. create repository in github , name is 2017nodeblog (https://github.com/kathydingcn/2017nodeblog.git)
+7.git remote add origin https://github.com/kathydingcn/2017nodeblog.git
+8.git push -u origin master
+
+=====create service(express + mongoose)=====
+1.express=require("express");app=express(); app.listen(8080) (same as in nodejs: let server=require("http").createServer(app); server.listen(8080))
+=====.setup router =======
+1.files( routes/index.js, routes/user.js, routes/article.js)
+2.index.js:
+let express = require("express");
+// get a router instance
+let router = express.Router();
+// define a router, parameters: route, 侦听函数
+router.get("/",function(req,res){
+    res.send("home page");
+});
+
+
+module.exports = router;
+3.server.js:
+let index = require("./routes/index");
+let user = require("./routes/user");
+app.use("/",index);
+app.use("/user",user);
+
+4.user.js
+router.get("/signup", function(req,res){
+    res.send("user signup page");
+});
+
+
