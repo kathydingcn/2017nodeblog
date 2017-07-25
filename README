@@ -74,3 +74,9 @@ in header.html:
                 <li><a href="/user/signout">Sign Out</a></li>
                 <li><a href="/article/add">Add articles</a></li>
                 </ul>
+refer to v3.bootstrap.cn
+=============sign up function==============
+1.finish html (sign up) page, a input form(username, password, email).
+2. deal with post /user/signup request
+3. save user information to database.
+4.back to signin page.
